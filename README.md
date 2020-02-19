@@ -1,96 +1,58 @@
-## Mooncoin Core 0.13.9-segwit
+## Mooncoin Core 0.17.1.0
 
 
-* Hardfork to new codebase occurs at block 1,250,000, however Mooncoin 0.10 and 0.13 wallets will be compatible until this point.
+* Hotfix applied to enable - Whole chain ProofOfWork validation
+* Hotfix applied to enable - Whole chain transactions validation
+* Warpsync removed (speed increases were achieved by removing ProofOfWork checks)
 
-* PoW algorithm is Scrypt, not BalloonHash. Pools and lightning network (in the future) support Scrypt, Balloon is exotic.
-
-* Block retarget algorithm will switch to DUAL_KGW3 with Bitsend timeout; after which diff will lower dynamically if a block has not been found after 60 minutes.
-
-* Warpsync block speedup - meaning a full sync from scratch can be achieved in 34 minutes (tested to the point of obsession on a core2quad q8200, you will sync quicker).
-
+* BIP heights correctly identified and updated
+* pow.cpp updated and corrected from version .13.9
+* DNS seeders added
+* checkpoints updated
+* themes now correctly display, testnet them clearly recognizable as not mainnet
+* version added to main gui, and splash screens for clarity
+* miner menus which cause virus scan alerts removed
+* miner activation window on the mainnet in .13.9 was not calculated correctly so that was updated
+* testnet and regtest networks were created
 * Controlled lowering of coin emission via dynamic nSubsidy (schedule available at https://github.com/mooncoincore/rewardSchedule).
 
-* Top Mooncoin addresses are unspendable and contain more than 77 billion frozen MOONcoins, which were not delivered (till March, 2017) by the Cryptsy exchange to the Florida court and were not returned to legitimate owners
 
+Mooncoin Core 
+=====================================
 
-## For Miner Configuration
+https://mooncoin.eco
+
+What is Mooncoin?
+----------------
+
+Our vision is to innovate and expand a tried and tested Blockchain, to create an ecosystem that enables social interactions and initiatives in science and education. The Moon ecosystem aims to serve as a platform for fast, secure monetary transactions, upon which innovative, game-changing initiatives can be implemented and executed.
+
+For more information, as well as an immediately usable, binary version of
+the Mooncoin Core software, see [https://github.com/mooncoincore/wallet/releases](https://github.com/mooncoincore/wallet/releases).
+
+License
+-------
+
+Mooncoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+information or see https://opensource.org/licenses/MIT.
+
+Development Process
 -------------------
 
-If you use the miner setup change the username to your wallet address.
-Go to Menu Settings > Options > Miner tab
-Be sure you have setup correctly the username/address with your wallet address and the Miner path is correct!
+The `master` branch is regularly built and tested, but is not guaranteed to be
+completely stable. [Tags](https://github.com/mooncoincore/wallet/tags) are created
+regularly to indicate new official, stable release versions of Mooncoin Core.
+
+The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+The developers can be found in the [mooncoin community](https://t.me/MoonCoinEco)
+and should be contacted directly to discuss complicated or controversial changes before working
+on a patch set.
+
+Developers can be found on telegram at https://t.me/MoonCoinEco
 
 
-## Cross-compilation
--------------------
+### RPC PORT 44663 / P2P PORT 44664 mainnet
+### RPC PORT 14663 / P2P PORT 14664 testnet
 
-These steps can be performed on, for example, an Ubuntu VM. The depends system
-will also work on other Linux distributions, however the commands for
-installing the toolchain will be different.
-
-Make sure you install the build requirements mentioned in
-[build-unix.md](/doc/build-unix.md).
-Then, install the toolchains and curl:
-
-    sudo apt-get install g++-mingw-w64-i686 mingw-w64-i686-dev g++-mingw-w64-x86-64 mingw-w64-x86-64-dev curl libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
-
-To build executables for Windows 32-bit:
-
-    cd depends
-    make HOST=i686-w64-mingw32 -j4
-    cd ..
-    ./configure --prefix=`pwd`/depends/i686-w64-mingw32
-    make
-
-To build executables for Windows 64-bit:
-
-    cd depends
-    make HOST=x86_64-w64-mingw32 -j4
-    cd ..
-    ./configure --prefix=`pwd`/depends/x86_64-w64-mingw32
-    make
-    
-To build executables for Linux:
-
-    ./autogen.sh
-    ./configure
-    if is for server environment add parameters --disable-wallet --without-gui --without-miniupnpc
-    make
-
-
-### Usage
-
-To build dependencies for the current arch+OS:
-
-    make
-
-To build for another arch/OS:
-
-    make HOST=host-platform-triplet
-
-For example:
-
-    make HOST=x86_64-w64-mingw32 -j4
-
-A prefix will be generated that's suitable for plugging into Mooncoin's
-configure. In the above example, a dir named x86_64-w64-mingw32 will be
-created. To use it for Mooncoin:
-
-    ./configure --prefix=`pwd`/depends/x86_64-w64-mingw32
-
-Common `host-platform-triplets` for cross compilation are:
-
-- `i686-w64-mingw32` for Win32
-- `x86_64-w64-mingw32` for Win64
-- `x86_64-apple-darwin11` for MacOSX
-- `arm-linux-gnueabihf` for Linux ARM 32 bit
-- `aarch64-linux-gnu` for Linux ARM 64 bit
-_____
-
-
-
-### RPC PORT 44663 / P2P PORT 44664
-
-#### Mooncoin started as an early Dogecoin fork (0.6), was upgraded over time to the Litecoin codebase (0.8), since progressing through to a much more modern Litecoin 0.10 codebase - and finally to current platform of Litecoin 0.13.9 with segwit. Built with tomorrow in mind.
-
+#### Mooncoin started as an early Dogecoin fork (0.6), was upgraded over time to the Litecoin codebase (0.8), since progressing through to a much more modern Litecoin 0.10 codebase - and finally to current platform of Litecoin 0.17.1 with segwit. Built with tomorrow in mind.

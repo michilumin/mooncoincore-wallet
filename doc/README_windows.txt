@@ -1,5 +1,5 @@
-Mooncoin Core 0.13.2
-=====================
+Mooncoin Core
+=============
 
 Intro
 -----
